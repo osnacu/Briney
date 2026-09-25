@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Construcción histórica de las infancias</title>
+  
+  <!-- Fuente Google Fonts (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f8f6f0;
+      --paper: #ffffff;
+      --ink: #1f2937;
+      --muted: #4b5563;
+      --accent: #6b21a8;
+      --accent-light: #f3e8ff;
+      --accent2: #d97706;
+      --line: #e5e7eb;
+      --soft: #f3f4f6;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* Encabezado / Hero Section */
+    header {
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      text-align: center;
+      background: radial-gradient(circle at 10% 20%, rgba(233, 213, 255, 0.5) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(254, 215, 170, 0.5) 0%, transparent 40%),
+                  var(--bg);
+    }
+
+    .hero {
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--ink);
+      scroll-margin-top: 80px;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 99px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 14px rgba(107, 33, 168, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(107, 33, 168, 0.4);
+    }
+
+    /* Navegación */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 12px 16px;
+    }
+
+    nav a {
+      white-space: nowrap;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* Contenido Principal y Secciones */
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    section {
+      margin-bottom: 80px;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 800px;
+      margin-bottom: 24px;
+    }
+
+    /* Ajuste de contenedor e imagen para la línea de tiempo */
+    .infographic-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 30px 0 40px 0;
+    }
+
+    .infographic-img {
+      display: block;
+      width: 100%;
+      max-width: 550px; /* Tamaño armónico en pantallas grandes */
+      height: auto;
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--line);
+      transition: var(--transition);
+    }
+
+    .infographic-img:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(107, 33, 168, 0.15);
+    }
+
+    /* Tarjetas e Integrantes */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .member {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Estilo para la imagen del integrante */
+    .avatar-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .member-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .role {
+      display: inline-block;
+      background: #fef3c7;
+      color: #92400e;
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .quote {
+      border-left: 4px solid var(--accent);
+      padding: 18px 24px;
+      background: var(--accent-light);
+      border-radius: 0 12px 12px 0;
+      font-size: 1.05rem;
+    }
+
+    /* Línea de Tiempo */
+    .timeline {
+      position: relative;
+      margin: 30px 0;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 19px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .event {
+      position: relative;
+      padding-left: 50px;
+      margin-bottom: 24px;
+    }
+
+    .dot {
+      position: absolute;
+      left: 10px;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 4px solid var(--bg);
+      z-index: 1;
+    }
+
+    .event-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .event-header {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      padding: 20px 24px;
+      cursor: pointer;
+      color: inherit;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .event-header h3 {
+      font-size: 1.15rem;
+      margin: 6px 0;
+    }
+
+    .period {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .detail {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 24px;
+      background: #fafafa;
+      border-top: 1px solid transparent;
+      transition: all 0.3s ease-out;
+    }
+
+    .event.open .detail {
+      max-height: 500px;
+      padding: 20px 24px;
+      border-top-color: var(--line);
+    }
+
+    .detail ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    .detail li {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    /* Autor clave */
+    .author-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 30px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .author-card h3 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .author-card ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    .author-card li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    /* Reflexión */
+    .reflection-card {
+      background: #fffbeb;
+      border-color: #fde68a;
+      margin-top: 30px;
+    }
+
+    .reflection-card ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    .reflection-card li {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .banner-footer {
+      background: #1e3a8a;
+      color: #ffffff;
+      text-align: center;
+      padding: 16px 24px;
+      border-radius: 12px;
+      margin-top: 30px;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* Referencias APA */
+    .ref p {
+      margin-bottom: 12px;
+      padding-left: 24px;
+      text-indent: -24px;
+    }
+
+    .ref a {
+      color: var(--accent);
+      word-break: break-all;
+    }
+
+    .small {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* Pie de página */
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+      background: var(--paper);
+    }
+
+    /* Ajustes para dispositivos móviles */
+    @media (max-width: 768px) {
+      .infographic-img {
+        max-width: 100%; /* Ocupa el ancho completo en pantallas pequeñas */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado Principal -->
+  <header id="inicio">
+    <div class="hero">
+      <span class="eyebrow">Curso Infancias: Historias y Perspectivas</span>
+      <h1>Construcción histórica de las infancias</h1>
+      <p>Transformaciones en la manera de comprender a niños y niñas a través del tiempo.</p>
+      <a class="btn" href="#reto2">Explorar la línea de tiempo</a>
+    </div>
+  </header>
+
+  <!-- Navegación -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#inicio">Inicio</a>
+      <a href="#presentacion">Presentación</a>
+      <a href="#integrante">Integrante</a>
+      <a href="#reto2">Reto 2</a>
+      <a href="#reto3">Reto 3</a>
+      <a href="#reto4">Reto 4</a>
+      <a href="#reto5">Reto 5</a>
+      <a href="#referencias">Referencias</a>
+    </div>
+  </nav>
+
+  <!-- Contenido Principal -->
+  <main>
+     <!-- Presentación -->
+     <section> 
+      <h2 id="presentacion">¿Qué encontrarás aquí?</h2>
+      <p class="lead">
+        Esta página reúne el primer avance del producto integrador del curso. Su propósito es comprender
+        que las infancias no se han entendido de la misma manera en todas las épocas ni en todos los contextos.
+        La línea de tiempo permite reconocer transformaciones históricas, sociales, culturales y educativas,
+        y relacionarlas con la manera actual de comprender a niños y niñas.
+      </p>
+      <div class="quote">
+        <strong>Idea central:</strong> Hablar de “infancias” en plural permite reconocer que las experiencias
+        de los niños y las niñas están atravesadas por sus contextos sociales, culturales, familiares y educativos.
+      </div>
+    </section>
+
+    <!-- Integrante -->
+    <section id="integrante">
+      <h2>Integrante del grupo</h2>
+      <p class="lead">Estudiante a cargo del desarrollo del producto integrador.</p>
+      
+      <div class="grid">
+        <article class="card member">
+          <img src="imagenes/Britney.jpeg" alt="Britney Nicole Plata Ariza" class="avatar-img">
+          <div class="member-info">
+            <h3>Britney Nicole Plata Ariza</h3>
+            <span class="role">Integrante / Relatora</span>
+            <p>Estudiante activa de la licenciatura. Comprometida con la articulación teórica del grupo y el desarrollo reflexivo de la línea de tiempo sobre la infancia.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Reto 2: Línea de tiempo interactiva -->
+    <section id="reto2">
+      <h2>Reto 2 · Construcción histórica de las infancias</h2>
+      <p class="lead">
+        Transformaciones en la manera de comprender a niños y niñas a través del tiempo. Haz clic en cada etapa para expandir o contraer la información.
+      </p>
+
+      <!-- Imagen ajustada -->
+      <div class="infographic-container">
+        <img src="imagenes/linea_de_tiempo.jpeg" alt="Construcción histórica de las infancias - Línea de tiempo" class="infographic-img">
+      </div>
+
+      <div class="timeline">
+        <article class="event">
+          <div class="dot"></div>
+          <div class="event-card">
+            <button class="event-header">
+              <span class="period">1 · Edad Antigua | aprox. 3500 a. C. – 476 d. C.</span>
+              <h3>Surgimiento de formas iniciales de educación</h3>
+            </button>
+            <div class="detail">
+              <ul>
+                <li>Sociedades jerárquicas, autoridad familiar y especialmente patrierna.</li>
+                <li>Posición social condicionada por la familia.</li>
+                <li>La infancia se entendía como preparación para la vida adulta y futuros adultos.</li>
+                <li>Surgieron formas iniciales de educación y transmisión cultural.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="dot"></div>
+          <div class="event-card">
+            <button class="event-header">
+              <span class="period">2 · Edad Media | aprox. 476 – 1492</span>
+              <h3>Orientación de la crianza y educación</h3>
+            </button>
+            <div class="detail">
+              <ul>
+                <li>Fuerte organización jerárquica e influencia cristiana.</li>
+                <li>Familia, comunidad e instituciones religiosas orientaban la crianza y educación.</li>
+                <li>Infancia como preparación para la adultez, con oportunidades condicionadas por género y posición social.</li>
+                <li>Todavía no se reconocía a niños y niñas como sujetos de derechos en sentido contemporáneo.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="dot"></div>
+          <div class="event-card">
+            <button class="event-header">
+              <span class="period">3 · Edad Moderna | aprox. 1492 – 1789</span>
+              <h3>Etapa particular del desarrollo</h3>
+            </button>
+            <div class="detail">
+              <ul>
+                <li>Transformaciones sociales, culturales y económicas.</li>
+                <li>Renacimiento e Ilustración impulsaron nuevas ideas sobre el ser humano, el conocimiento y la educación.</li>
+                <li>La infancia empezó a reconocerse como una etapa particular del desarrollo, ello que requería atención y promoción educativos adultos.</li>
+                <li>Las nuevas ideas pedagógicas cuestionaron prácticas tradicionales.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="dot"></div>
+          <div class="event-card">
+            <button class="event-header">
+              <span class="period">4 · Comprensión contemporánea</span>
+              <h3>Reconocimiento progresivo como sujetos de derechos</h3>
+            </button>
+            <div class="detail">
+              <ul>
+                <li>Reconocimiento progresivo de niños y niñas como sujetos de derechos.</li>
+                <li>Con necesidades propias y capacidad de participación.</li>
+                <li>Derecho a ser escuchados, respetados y protegidos.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Autor clave -->
+      <div class="author-card">
+        <h3>Autor clave: Jean-Jacques Rousseau</h3>
+        <ul>
+          <li>Planteó la infancia como una etapa particular del desarrollo.</li>
+          <li>Defendió respetar las características propias del niño en la educación.</li>
+        </ul>
+      </div>
+
+      <!-- Reflexión crítica -->
+      <div class="card reflection-card">
+        <h3>Reflexión crítica</h3>
+        <ul>
+          <li>La infancia se construye según los contextos sociales, culturales, familiares, educativos y económicos.</li>
+          <li>La educación infantil debe superar la visión del niño como simple receptor de conocimientos y promover ambientes donde sea protagonista de su desarrollo.</li>
+        </ul>
+      </div>
+
+      <div class="banner-footer">
+        De la preparación para la vida adulta al reconocimiento de niños y niñas como sujetos de derechos ➔
+      </div>
+    </section>
+
+    <!-- Próximos Retos -->
+    <section id="reto3">
+      <h2>Infancias en perspectiva</h2>
+      <div class="card">
+        <span class="role">Reto 3</span>
+        <p>Esta pestaña queda creada y se desarrollará en el siguiente reto.</p>
+      </div>
+    </section>
+
+    <section id="reto4">
+      <h2>Comprendiendo las realidades y desafíos de las infancias</h2>
+      <div class="card">
+        <span class="role">Reto 4</span>
+        <p>Esta pestaña queda creada y se desarrollará en el Reto 4.</p>
+      </div>
+    </section>
+
+    <section id="reto5">
+      <h2>Voces para la transformación de las infancias</h2>
+      <div class="card">
+        <span class="role">Reto 5</span>
+        <p>Esta pestaña queda creada y se desarrollará en el Reto 5.</p>
+      </div>
+    </section>
+
+    <!-- Referencias bibliográficas -->
+    <section id="referencias">
+      <h2>Referencias bibliográficas</h2>
+      <div class="card ref">
+        <p>Benchimol, K., Bidese, M., Gentile, M. F., Keserman, A., Juárez, M., Sokolowicz, A., Zapiola, M. C., Amado, G., &amp; Espínola, C. (2023). <em>Infancias en plural</em>. Universidad Nacional de General Sarmiento.</p>
+        <p>Chica Lasso, M. F., &amp; Rosero Prado, A. L. (2012). La construcción social de la infancia y el reconocimiento de sus competencias. <em>Itinerario Educativo, 26</em>(60), 75–96. <a href="https://doi.org/10.21500/01212753.1401" target="_blank">https://doi.org/10.21500/01212753.1401</a></p>
+        <p>Pedraza Ramírez, C. E., Morales Mantilla, S. M., Gómez Bohórquez, P. T., Rodríguez Bernal, Y., Pérez Ospina, J. M., &amp; Villamizar Parada, N. J. (2022). <em>Representaciones sobre la educación infantil: Infancias en contingencia</em>. Sello Editorial UNAD. <a href="https://doi.org/10.22490/9789586518710" target="_blank">https://doi.org/10.22490/9789586518710</a></p>
+      </div>
+      <p class="small">Nota: revisen las referencias finales con el material efectivamente utilizado por el grupo y mantengan el formato APA 7.ª edición.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Curso Infancias: Historias y Perspectivas · UNAD · Reto 2</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const events = document.querySelectorAll('.event');
+
+      events.forEach(event => {
+        const button = event.querySelector('.event-header');
+
+        button.addEventListener('click', () => {
+          events.forEach(item => {
+            if (item !== event) {
+              item.classList.remove('open');
+            }
+          });
+
+          event.classList.toggle('open');
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
